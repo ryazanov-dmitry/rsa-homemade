@@ -42,14 +42,11 @@ public class Rsa
 
     public static long GeneratePrime()
     {
-        var count = 0;
         long prime = new Random().NextInt64(1000000000);
 
         while (!Rsa.IsPrime(prime))
         {
-            count++;
             prime -= 1;
-            Console.WriteLine(count);
         }
 
         return prime;

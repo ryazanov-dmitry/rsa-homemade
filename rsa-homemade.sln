@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rsa", "rsa\rsa.csproj", "{EC730C46-7A40-4AB7-95A5-548BA943DB85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{5BD39563-13FC-4BBD-BF3D-60A887FD9238}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC730C46-7A40-4AB7-95A5-548BA943DB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC730C46-7A40-4AB7-95A5-548BA943DB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC730C46-7A40-4AB7-95A5-548BA943DB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC730C46-7A40-4AB7-95A5-548BA943DB85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BD39563-13FC-4BBD-BF3D-60A887FD9238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BD39563-13FC-4BBD-BF3D-60A887FD9238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BD39563-13FC-4BBD-BF3D-60A887FD9238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BD39563-13FC-4BBD-BF3D-60A887FD9238}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -37,8 +37,9 @@ public class RsaTests
     [InlineData(7, 3, 11, 2)]
     [InlineData(7, 5, 11, 10)]
     [InlineData(7, 1234567, 11, 6)]
+    [InlineData(7, 87654349, 87654349, 7)]
     [Theory]
-    public void FastExp(int x, int pow, int mod, int exp)
+    public void FastExp(long x, long pow, long mod, long exp)
     {
         // When
         // var s1 = new Stopwatch(); s1.Start();
@@ -57,5 +58,18 @@ public class RsaTests
         // Then
         Assert.Equal(exp, y);
     }
-  
+    [InlineData(87654349, true)]
+    [InlineData(87654348, false)]
+    [InlineData(872364823764382, false)]
+    [Theory]
+    public void PrimeCheck_Positive(long prime, bool exp)
+    {
+        // When
+        bool isPrime = Rsa.IsPrime(prime);
+
+        Console.WriteLine(Rsa.FastExp(2, prime, prime));
+
+        // Then
+        Assert.Equal(exp, isPrime);
+    }
 }

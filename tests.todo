@@ -2,5 +2,8 @@ tests:
     ✔ square modulo @done(22-05-04 10:57)
     ✔ square multiply mod @done(22-05-04 11:02)
     ✔ fast exp @done(22-05-04 11:58)
+    ✔ prime check - positive @done(22-05-04 12:39)
+    ✔ prime check - negative @done(22-05-04 12:39)
+    
 
 

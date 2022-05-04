@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Open.Numeric.Primes;
 using rsa;
 using Xunit;
 
@@ -38,6 +39,7 @@ public class RsaTests
     [InlineData(7, 5, 11, 10)]
     [InlineData(7, 1234567, 11, 6)]
     [InlineData(7, 87654349, 87654349, 7)]
+    [InlineData(3, 1111111111111, 7, 3)]
     [Theory]
     public void FastExp(long x, long pow, long mod, long exp)
     {
@@ -47,11 +49,11 @@ public class RsaTests
         // s1.Stop(); Console.WriteLine(s1.Elapsed);
 
         // var s2 = new Stopwatch(); s2.Start();
-        var slow = x;
-        for (int i = 0; i < pow-1; i++)
-        {
-            slow = slow * x % mod;
-        }
+        // var slow = x;
+        // for (int i = 0; i < pow-1; i++)
+        // {
+        //     slow = slow * x % mod;
+        // }
         // s2.Stop(); Console.WriteLine(s2.Elapsed);
 
 
@@ -67,9 +69,23 @@ public class RsaTests
         // When
         bool isPrime = Rsa.IsPrime(prime);
 
-        Console.WriteLine(Rsa.FastExp(2, prime, prime));
-
         // Then
         Assert.Equal(exp, isPrime);
+    }
+
+
+    [Fact]
+    public void GenerateLargePrime()
+    {
+        // When
+        long largeP=0;
+
+        for (int i = 0; i < 100; i++)
+        {
+            largeP = Rsa.GeneratePrime();
+        }
+
+        // Then
+        Assert.True(Number.IsPrime(largeP));
     }
 }

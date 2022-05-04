@@ -27,13 +27,31 @@ public class Rsa
 
     public static bool IsPrime(long largePrime, int sec = 10)
     {
+        if (largePrime % 2 == 0 || largePrime % 5 == 0 || largePrime % 10 == 0)
+            return false;
+
         for (int i = 0; i < sec; i++)
         {
-            var a = new Random().Next(2, Math.Min(int.MaxValue, ((int)largePrime -2)));
+            var a = new Random().Next(2, 100000);
             if (Rsa.FastExp(a, largePrime - 1, largePrime) != 1)
                 return false;
         }
 
         return true;
+    }
+
+    public static long GeneratePrime()
+    {
+        var count = 0;
+        long prime = new Random().NextInt64(1000000000);
+
+        while (!Rsa.IsPrime(prime))
+        {
+            count++;
+            prime -= 1;
+            Console.WriteLine(count);
+        }
+
+        return prime;
     }
 }

@@ -4,6 +4,6 @@ tests:
     ✔ fast exp @done(22-05-04 11:58)
     ✔ prime check - positive @done(22-05-04 12:39)
     ✔ prime check - negative @done(22-05-04 12:39)
-    
+    ✔ generate large prime @done(22-05-04 15:07)
 
 

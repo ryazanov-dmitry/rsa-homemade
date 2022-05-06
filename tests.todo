@@ -5,5 +5,9 @@ tests:
     ✔ prime check - positive @done(22-05-04 12:39)
     ✔ prime check - negative @done(22-05-04 12:39)
     ✔ generate large prime @done(22-05-04 15:07)
+    ✔ generate keys @10m @done(22-05-06 08:59)
+    ✔ verify signature @10m @done(22-05-06 09:03)
+    ✔ generate prime less than @done(22-05-05 07:56)
+    ✔ find inverse @done(22-05-06 08:57)
 
 

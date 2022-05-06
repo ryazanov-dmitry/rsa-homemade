@@ -8,8 +8,8 @@ namespace tests;
 
 public class RsaTests
 {
-    [InlineData(9,17,13)]
-    [InlineData(17,99,91)]
+    [InlineData(9, 17, 13)]
+    [InlineData(17, 99, 91)]
     [Theory]
     public void SquareMod(int x, int mod, int exp)
     {
@@ -45,7 +45,7 @@ public class RsaTests
     {
         // When
         // var s1 = new Stopwatch(); s1.Start();
-        var y = Rsa.FastExp(x, pow, mod); 
+        var y = Rsa.FastExp(x, pow, mod);
         // s1.Stop(); Console.WriteLine(s1.Elapsed);
 
         // var s2 = new Stopwatch(); s2.Start();
@@ -60,6 +60,7 @@ public class RsaTests
         // Then
         Assert.Equal(exp, y);
     }
+    [InlineData(7, true)]
     [InlineData(87654349, true)]
     [InlineData(87654348, false)]
     [InlineData(872364823764382, false)]
@@ -78,7 +79,7 @@ public class RsaTests
     public void GenerateLargePrime()
     {
         // When
-        long largeP=0;
+        long largeP = 0;
 
         for (int i = 0; i < 100; i++)
         {
@@ -87,5 +88,78 @@ public class RsaTests
 
         // Then
         Assert.True(Number.IsPrime(largeP));
+    }
+
+    [Fact]
+    public void GeneratePrivateKey()
+    {
+        // Given
+        var q = Rsa.GeneratePrime();
+        var p = Rsa.GeneratePrime();
+        var n = q * p;
+        var phi = (q - 1) * (p - 1);
+        var e = Rsa.GeneratePrime();
+
+        // When
+        var d = Rsa.Inverse(e, phi);
+
+        // Then
+        var product = d * e % phi;
+
+        Assert.Equal(1, product);
+    }
+
+    [Fact]
+    public void VerifySig()
+    {
+        // Given
+        var q = Rsa.GeneratePrime();
+        var p = Rsa.GeneratePrime();
+        var n = q * p;
+        var phi = (q - 1) * (p - 1);
+        var e = Rsa.GeneratePrime();
+        var d = Rsa.Inverse(e, phi);
+
+        var message = new Random().Next(1, 10000);
+
+        // When
+        var sig = Rsa.FastExp(message, e, n);
+        var decrypted = Rsa.FastExp(sig, d, n);
+
+        // Then
+        Assert.Equal(message, decrypted);
+    }
+
+    [Fact]
+    public void GeneratePrimeLessThan()
+    {
+        // Given
+        long phi = 100000;
+
+        // When
+        long largeP = Rsa.GeneratePrime(phi);
+
+        // Then
+        Assert.InRange(largeP, 0, phi);
+    }
+
+    // [InlineData(4054, 4297)]
+    // [Theory]
+    [Fact]
+    public void Inverse()
+    {
+        for (int j = 0; j < 50; j++)
+        {
+            // Given
+            long mod = Rsa.GeneratePrime(10000);
+            long a = new Random().NextInt64(2, mod - 1);
+
+            // When
+            var i = Rsa.Inverse(a, mod);
+
+            // Then
+            var actual = a * i % mod;
+            Assert.Equal(1, actual);
+        }
     }
 }
